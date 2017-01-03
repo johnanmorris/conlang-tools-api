@@ -6,6 +6,8 @@ gem 'rails', '4.2.7'
 
 # Rails API gem
 gem 'rails-api'
+# ActiveModel Serializer
+gem 'active_model_serializers'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
