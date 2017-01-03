@@ -39,12 +39,12 @@ class LanguageTest < ActiveSupport::TestCase
     s_ph = phonemes(:s)
     i_ph = phonemes(:i)
 
-    assert_equal 3, kelen.phonemes.length
+    assert_equal 3, kelen.phonemes.size
     assert_includes kelen.phoneme_ids, s_ph.id
     assert_includes kelen.phoneme_ids, b_ph.id
     assert_includes kelen.phoneme_ids, p_ph.id
 
-    assert_equal 2, esperanto.phonemes.length
+    assert_equal 2, esperanto.phonemes.size
     assert_includes esperanto.phoneme_ids, s_ph.id
     assert_includes esperanto.phoneme_ids, i_ph.id
 
@@ -54,7 +54,7 @@ class LanguageTest < ActiveSupport::TestCase
 
   test "a language can have no phonemes" do
     laadan = languages(:laadan)
-    assert_equal 0, laadan.phonemes.length
+    assert laadan.phonemes.empty?
     assert laadan.valid?
   end
 end
