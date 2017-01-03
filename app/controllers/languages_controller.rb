@@ -1,4 +1,6 @@
 class LanguagesController < ApplicationController
+  before_action :find_language, except: [:index, :create]
+
   def index
     # This will have to be modified once a User model exists
     languages = Language.all
@@ -6,9 +8,8 @@ class LanguagesController < ApplicationController
   end
 
   def show
-    language = Language.find_by(id: params[:id])
-    if language
-      render json: language
+    if @language.present?
+      render json: @language
     else
       render status: :not_found, nothing: true
     end
@@ -18,13 +19,33 @@ class LanguagesController < ApplicationController
     logger.info(">>>>>>>> #{request.body.read}")
     logger.info(">>>>>>>> #{params}")
     language = Language.new(language_params)
-    language.save
-    render json: {"id": language.id}, status: :created
+    if language.save
+      render json: {"id": language.id}, status: :created
+    else
+      render status: :bad_request, nothing: true
+    end
   end
 
+  def update
+    @language.assign_attributes(language_params)
+    if @language.save
+      render json: @language
+    else
+      render status: :bad_request, nothing: true
+    end
+  end
+
+  def destroy
+    @language.destroy
+    render json: [], status: :no_content
+  end
   private
 
   def language_params
     params.require(:language).permit(:id, :name, :description)
+  end
+
+  def find_language
+    @language = Language.find_by(id: params[:id])
   end
 end

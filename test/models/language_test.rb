@@ -7,6 +7,18 @@ class LanguageTest < ActiveSupport::TestCase
     assert_includes language.errors, :name
   end
 
+  test "Cannot create a language with a nil name" do
+    language = Language.new(name: nil, description: "ceci n'est pas une pipe")
+    assert_not language.valid?
+    assert_includes language.errors, :name
+  end
+
+  test "Cannot create a languge with an empty string name" do
+    language = Language.new(name: "", description: "something")
+    assert_not language.valid?
+    assert_includes language.errors, :name
+  end
+
   test "Can create language without a description" do
     language = Language.new(name: "Zompist")
     assert language.valid?

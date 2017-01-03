@@ -78,4 +78,39 @@ class LanguagesControllerTest < ActionController::TestCase
     lang_from_database = Language.find(body["id"])
     assert_equal language_data["name"], lang_from_database.name
   end
+
+  test "#create doesn't add a new Language if the parameters are bad" do
+    language_data = {"description" => "stuff"}
+
+    assert_no_difference('Language.count') do
+      post :create, {"language": language_data}
+    end
+
+    assert_response :bad_request
+    assert_empty response.body
+  end
+
+  test "#update successfully modifies an existing Language object" do
+    kelen_id = languages(:kelen).id
+    patch :update, {id: kelen_id, language: {name: "Kele"}}
+    assert_equal "Kele", Language.find(kelen_id).name
+  end
+
+  test "#update should not allow empty string name" do
+    kelen_id = languages(:kelen).id
+    patch :update, {id: kelen_id, language: {name: ""}}
+    assert_equal "Kelen", Language.find(kelen_id).name
+    assert_response :bad_request
+    assert_empty response.body
+  end
+
+  test "#destroy should remove a Language from the database" do
+    kelen_id = languages(:kelen).id
+    assert_difference('Language.count', -1) do
+      delete :destroy, {id: kelen_id}
+      assert_raises ActiveRecord::RecordNotFound do
+        Language.find(kelen_id)
+      end
+    end
+  end
 end
