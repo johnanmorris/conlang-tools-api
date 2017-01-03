@@ -37,14 +37,16 @@ class LanguageTest < ActiveSupport::TestCase
     p_ph = phonemes(:p)
     b_ph = phonemes(:b_cap)
     s_ph = phonemes(:s)
+    i_ph = phonemes(:i)
 
     assert_equal 3, kelen.phonemes.length
     assert_includes kelen.phoneme_ids, s_ph.id
     assert_includes kelen.phoneme_ids, b_ph.id
     assert_includes kelen.phoneme_ids, p_ph.id
 
-    assert_equal 1, esperanto.phonemes.length
+    assert_equal 2, esperanto.phonemes.length
     assert_includes esperanto.phoneme_ids, s_ph.id
+    assert_includes esperanto.phoneme_ids, i_ph.id
 
     assert_respond_to kelen, :phonemes
     assert_respond_to esperanto, :phonemes
