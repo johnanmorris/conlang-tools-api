@@ -49,4 +49,10 @@ class LanguageTest < ActiveSupport::TestCase
     assert_respond_to kelen, :phonemes
     assert_respond_to esperanto, :phonemes
   end
+
+  test "a language can have no phonemes" do
+    laadan = languages(:laadan)
+    assert_equal 0, laadan.phonemes.length
+    assert laadan.valid?
+  end
 end
