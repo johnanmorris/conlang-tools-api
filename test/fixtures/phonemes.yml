@@ -1,9 +1,23 @@
 p:
   ipa: p
   languages: kelen
-q:
-  ipa: q
+  voice: false
+  place: bilabial
+  manner: plosive
+b_cap:
+  ipa: ʙ
   languages: kelen
+  voice: true
+  place: bilabial
+  manner: trill
 s:
   ipa: s
   languages: esperanto, kelen
+  voice: false
+  place: alveolar
+  manner: fricative
+eth:
+  ipa: ð
+  voice: true
+  place: dental
+  manner: fricative

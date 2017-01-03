@@ -34,15 +34,18 @@ class LanguageTest < ActiveSupport::TestCase
   test "Language can have many phonemes" do
     kelen = languages(:kelen)
     esperanto = languages(:esperanto)
-    s_ph = phonemes(:s)
-    q_ph = phonemes(:q)
     p_ph = phonemes(:p)
+    b_ph = phonemes(:b_cap)
+    s_ph = phonemes(:s)
+
     assert_equal 3, kelen.phonemes.length
     assert_includes kelen.phoneme_ids, s_ph.id
-    assert_includes kelen.phoneme_ids, q_ph.id
+    assert_includes kelen.phoneme_ids, b_ph.id
     assert_includes kelen.phoneme_ids, p_ph.id
+
     assert_equal 1, esperanto.phonemes.length
     assert_includes esperanto.phoneme_ids, s_ph.id
+
     assert_respond_to kelen, :phonemes
     assert_respond_to esperanto, :phonemes
   end
