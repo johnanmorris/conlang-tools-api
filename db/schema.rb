@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170103175614) do
+ActiveRecord::Schema.define(version: 20170104175345) do
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(version: 20170103175614) do
     t.boolean  "consonant"
     t.boolean  "front"
     t.boolean  "high"
+    t.boolean  "syllabic"
+    t.boolean  "low"
+    t.boolean  "back"
+    t.boolean  "tense"
   end
 
   create_table "syllables", force: :cascade do |t|
