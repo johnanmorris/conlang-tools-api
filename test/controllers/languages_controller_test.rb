@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class LanguagesControllerTest < ActionController::TestCase
-  # API JSON setup
   setup do
+
+    @kelen_id = languages(:kelen).id
+
+    # API JSON setup
     @request.headers['Accept'] = Mime::JSON
     @request.headers['Content-Type'] = Mime::JSON.to_s
   end
@@ -91,25 +94,22 @@ class LanguagesControllerTest < ActionController::TestCase
   end
 
   test "#update successfully modifies an existing Language object" do
-    kelen_id = languages(:kelen).id
-    patch :update, {id: kelen_id, language: {name: "Kele"}}
-    assert_equal "Kele", Language.find(kelen_id).name
+    patch :update, {id: @kelen_id, language: {name: "Kele"}}
+    assert_equal "Kele", Language.find(@kelen_id).name
   end
 
   test "#update should not allow empty string name" do
-    kelen_id = languages(:kelen).id
-    patch :update, {id: kelen_id, language: {name: ""}}
-    assert_equal "Kelen", Language.find(kelen_id).name
+    patch :update, {id: @kelen_id, language: {name: ""}}
+    assert_equal "Kelen", Language.find(@kelen_id).name
     assert_response :bad_request
     assert_empty response.body
   end
 
   test "#destroy should remove a Language from the database" do
-    kelen_id = languages(:kelen).id
     assert_difference('Language.count', -1) do
-      delete :destroy, {id: kelen_id}
+      delete :destroy, {id: @kelen_id}
       assert_raises ActiveRecord::RecordNotFound do
-        Language.find(kelen_id)
+        Language.find(@kelen_id)
       end
     end
   end
