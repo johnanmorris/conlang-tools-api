@@ -7,7 +7,7 @@ class LanguagesControllerTest < ActionController::TestCase
     @request.headers['Content-Type'] = Mime::JSON.to_s
   end
 
-  LANGUAGE_KEYS = %w( description id name phoneme_list )
+  LANGUAGE_KEYS = %w( description id name )
 
   def compare_languages(fixture, response)
     assert_equal LANGUAGE_KEYS, response.keys.sort
