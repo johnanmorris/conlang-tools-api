@@ -8,6 +8,9 @@ class LanguagesController < ApplicationController
   end
 
   def show
+    # respond_to do |format|
+    #   format.json {render :json => @language }
+    # end
     if @language.present?
       render json: @language
     else
@@ -42,7 +45,7 @@ class LanguagesController < ApplicationController
   private
 
   def language_params
-    params.require(:language).permit(:id, :name, :description)
+    params.require(:language).permit(:id, :name, :description, :phoneme_list)
   end
 
   def find_language
