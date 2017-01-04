@@ -7,5 +7,5 @@ class PhonemeSerializer < ActiveModel::Serializer
     hash
   end
 
-  attributes :ipa, :voice, :consonant, :place, :manner, :high, :front
+  attributes :ipa, :voice, :consonant, :place, :manner, :high, :front, :low, :back, :syllabic
 end

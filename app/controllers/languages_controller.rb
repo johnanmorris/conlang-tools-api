@@ -42,7 +42,7 @@ class LanguagesController < ApplicationController
   private
 
   def language_params
-    params.require(:language).permit(:id, :name, :description)
+    params.require(:language).permit(:id, :name, :description, phoneme_ids: [])
   end
 
   def find_language

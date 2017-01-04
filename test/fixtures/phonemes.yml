@@ -5,6 +5,7 @@ p:
   consonant: true
   place: bilabial
   manner: plosive
+  syllabic: false
 b_cap:
   ipa: ʙ
   languages: kelen
