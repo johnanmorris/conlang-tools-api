@@ -6,18 +6,10 @@ class PhonemesController < ApplicationController
     render json: language_phonemes
   end
 
-  # def add
-  #   @phoneme.language_ids << @language.id
-  # end
-  #
-  # def remove
-  #   @phoneme.language_ids.delete(@language.id)
-  # end
-
   private
 
   def phoneme_params
-    params.require(:phoneme).permit(:ipa, :voice, :consonant, :place, :manner, :high, :front, :low, :back, :syllabic, language_ids: [])
+    params.require(:phoneme).permit(:ipa, :voice, :consonant, :place, :manner, :high, :front, :low, :back, :syllabic)
   end
 
   def find_language
