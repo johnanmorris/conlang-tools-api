@@ -2,19 +2,17 @@ class PhonemesController < ApplicationController
   before_action :find_language, only: [:add, :remove]
 
   def index
-    # phonemes = Phoneme.all
-    # render json: phonemes
     language_phonemes = Language.includes(:phonemes).find(params[:language_id]).phonemes
     render json: language_phonemes
   end
 
-  def add
-    @phoneme.language_ids << @language.id
-  end
-
-  def remove
-    @phoneme.language_ids.delete(@language.id)
-  end
+  # def add
+  #   @phoneme.language_ids << @language.id
+  # end
+  #
+  # def remove
+  #   @phoneme.language_ids.delete(@language.id)
+  # end
 
   private
 

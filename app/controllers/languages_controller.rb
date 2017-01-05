@@ -39,6 +39,7 @@ class LanguagesController < ApplicationController
     @language.destroy
     render json: [], status: :no_content
   end
+
   private
 
   def language_params

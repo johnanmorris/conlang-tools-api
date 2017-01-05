@@ -28,19 +28,6 @@ class PhonemesControllerTest < ActionController::TestCase
     assert_match 'application/json', response.header['Content-Type']
   end
 
-# Question for consideration: Do I want it to return all Phonemes,
-# or do I want to return only those which belong to the language?
-# I'm inclined towards the latter; I've included both tests, but
-# skipped the ALL test and commented that out in the controller.
-
-  test "#index returns an Array of all Phoneme objects" do
-    skip
-    get :index, {language_id: @kelen_id }
-    body = JSON.parse(response.body)
-    assert_instance_of Array, body
-    assert_equal 5, body.length
-  end
-
   test "#index returns an Array of all Phoneme objects belonging to a language" do
     get :index, {language_id: @kelen_id }
     body = JSON.parse(response.body)

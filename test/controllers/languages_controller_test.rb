@@ -112,5 +112,6 @@ class LanguagesControllerTest < ActionController::TestCase
         Language.find(@kelen_id)
       end
     end
+    assert_response :no_content
   end
 end
