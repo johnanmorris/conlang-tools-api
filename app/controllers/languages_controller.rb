@@ -20,7 +20,7 @@ class LanguagesController < ApplicationController
     logger.info(">>>>>>>> #{params}")
     language = Language.new(language_params)
     if language.save
-      render json: {"id": language.id}, status: :created
+      render json: language, status: :created
     else
       render status: :bad_request, nothing: true
     end

@@ -14,7 +14,7 @@ class SyllablesController < ApplicationController
     syllable.language_id = @language.id
 
     if syllable.save
-      render json: {"id": syllable.id }, status: :created
+      render json: syllable, status: :created
     else
       render status: :bad_request, nothing: true
     end
@@ -33,7 +33,7 @@ class SyllablesController < ApplicationController
     @syllable.destroy
     render json: [], status: :no_content
   end
-  
+
   private
   def syllable_params
     params.require(:syllable).permit(:id, :pattern, :language_id)
