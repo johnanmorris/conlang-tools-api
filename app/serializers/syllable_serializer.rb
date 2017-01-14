@@ -1,3 +1,3 @@
 class SyllableSerializer < ActiveModel::Serializer
-  attributes :pattern, :language_id, :id
+  attributes :id, :pattern, :language_id
 end

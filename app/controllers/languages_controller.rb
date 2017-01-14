@@ -1,6 +1,5 @@
 class LanguagesController < ApplicationController
   before_action :find_language, except: [:index, :create]
-  # before_filter :fix_json_params
 
   def index
     # This will have to be modified once a User model exists
