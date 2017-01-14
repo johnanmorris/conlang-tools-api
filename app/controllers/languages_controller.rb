@@ -1,5 +1,6 @@
 class LanguagesController < ApplicationController
   before_action :find_language, except: [:index, :create]
+  # before_filter :fix_json_params
 
   def index
     # This will have to be modified once a User model exists
@@ -43,7 +44,8 @@ class LanguagesController < ApplicationController
   private
 
   def language_params
-    params.require(:language).permit(:id, :name, :description, phoneme_ids: [])
+    params[:language][:phoneme_ids] ||=[]
+    params.require(:language).permit(:id, :name, :description, {phoneme_ids: []})
   end
 
   def find_language
