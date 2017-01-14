@@ -11,13 +11,6 @@ class SyllablesControllerTest < ActionController::TestCase
 
   SYLLABLE_KEYS = %w( id language_id pattern )
 
-  def compare_syllables(fixture, response)
-    assert_equal SYLLABLE_KEYS, response.keys.sort
-    SYLLABLE_KEYS.each do |key|
-      assert_equal fixture[key], response[key]
-    end
-  end
-
   test "can get #index" do
     get :index, {language_id: @kelen_id}
     assert_response :success
@@ -31,14 +24,17 @@ class SyllablesControllerTest < ActionController::TestCase
   test "#index returns array of all Syllable objects in language" do
     get :index, {language_id: @kelen_id}
     body = JSON.parse(response.body)
-    assert_instance_of Array, body
-    assert_equal 2, body.length
+    assert_instance_of Hash, body
+    assert_equal 1, body.keys.length
+    assert_equal "syllables", body.keys.first
+    assert_equal 2, body["syllables"].length
   end
 
   test "objects in #index contain proper keys" do
     get :index, {language_id: @kelen_id}
     body = JSON.parse(response.body)
-    assert_equal SYLLABLE_KEYS, body.map(&:keys).flatten.uniq.sort
+    objects = body["syllables"]
+    assert_equal SYLLABLE_KEYS, objects.map(&:keys).flatten.uniq.sort
   end
 
   test "#create adds a new syllable to the database" do
@@ -52,12 +48,12 @@ class SyllablesControllerTest < ActionController::TestCase
 
     assert_match 'application/json', response.header['Content-Type']
     body = JSON.parse(response.body)
+    object = body["syllable"]
     assert_instance_of Hash, body
 
-    assert_equal 1, body.keys.length
-    assert_equal "id", body.keys.first
+    assert_equal 3, object.keys.length
 
-    syllable_from_database = Syllable.find(body["id"])
+    syllable_from_database = Syllable.find(object["id"])
     assert_equal syllable_data["pattern"], syllable_from_database.pattern
     assert_equal @kelen_id, syllable_from_database.language_id
   end

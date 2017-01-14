@@ -3,44 +3,37 @@ require 'test_helper'
 class PhonemesControllerTest < ActionController::TestCase
 
   setup do
-    @kelen_id = languages(:kelen).id
     # API JSON setup
     @request.headers['Accept'] = Mime::JSON
     @request.headers['Content-Type'] = Mime::JSON.to_s
   end
 
-  PHONEME_KEYS = %w( back consonant front high ipa low manner place voice syllabic )
+  PHONEME_KEYS = %w( back consonant front high id ipa low manner place syllabic voice)
 
-  def compare_phonemes(fixture, response)
-    assert_equal PHONEME_KEYS, response.keys.sort
-    PHONEME_KEYS.each do |key|
-      assert_equal fixture[key], response[key]
-    end
-  end
-
-  test "can get #index" do
-    get :index, {language_id: @kelen_id }
+  test "can get phonemes#index" do
+    get :index
     assert_response :success
   end
 
-  test "#index returns json" do
-    get :index, {language_id: @kelen_id }
+  test "phonemes#index returns json" do
+    get :index
     assert_match 'application/json', response.header['Content-Type']
   end
 
-  test "#index returns an Array of all Phoneme objects belonging to a language" do
-    get :index, {language_id: @kelen_id }
+  test "phonemes#index returns a hash of all phonemes" do
+    get :index
     body = JSON.parse(response.body)
-    assert_instance_of Array, body
-    assert_equal 3, body.length
+    assert_instance_of Hash, body
+    assert_equal 1, body.keys.length
+    assert_match "phonemes", body.keys.first
+    assert_instance_of Array, body["phonemes"]
+    assert_equal 5, body["phonemes"].length
   end
 
-  test "objects in #index contain proper keys with nil values removed" do
-    get :index, {language_id: @kelen_id }
+  test "objects in #index contain proper keys" do
+    get :index
     body = JSON.parse(response.body)
-    body_keys = body.map(&:keys).flatten.uniq
-    body_keys.each do |key|
-      assert_includes PHONEME_KEYS, key
-    end
+    objects = body["phonemes"]
+    assert_equal PHONEME_KEYS, objects.map(&:keys).flatten.uniq.sort
   end
 end
