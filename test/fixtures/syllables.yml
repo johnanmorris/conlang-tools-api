@@ -5,7 +5,7 @@ two:
   pattern: consonant+vowel+nasal
   language: kelen
 three:
-  pattern: vowel
+  pattern: vowel+consonant
   language: laadan
 four:
   pattern: nasal+stop+vowel

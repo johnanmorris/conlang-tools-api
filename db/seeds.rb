@@ -7,9 +7,9 @@ csv.each do |row, cell|
   phone = Phoneme.new
   # Converting strings to booleans
   # and saving their values as params
-  if row[cell].to_s == "TRUE"
+  if row[cell].to_s == "TRUE" || row[cell].to_s == "true"
     row[cell] = true
-  elsif row[cell].to_s == "FALSE"
+  elsif row[cell].to_s == "FALSE" || row[cell].to_s == "false"
     row[cell] = false
   end
 
@@ -27,15 +27,22 @@ csv.each do |row, cell|
   puts "#{phone.ipa} saved"
 end
 
-
 lang = Language.new(name: "Nikana")
 sounds = ["p", "b", "t", "d", "k", "g", "m", "n", "ŋ",
   "f", "v", "s", "z", "ʃ", "ʒ", "h", "l", "r", "a", "e", "i", "o", "u"]
 phonemes = []
+dictionary = ["pasik", "ʒamol", "fidu", "aŋ"]
+translations = ["drink", "eat", "food", "water"]
 
 sounds.each do |letter|
   ph = Phoneme.find_by(ipa: letter)
   lang.phonemes << ph
+end
+
+dictionary.each do |item|
+  translation = translations.shift
+  word = Word.new(form: item, translation: translation)
+  lang.words << word
 end
 
 lang.save

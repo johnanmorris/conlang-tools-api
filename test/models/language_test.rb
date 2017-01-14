@@ -69,4 +69,14 @@ class LanguageTest < ActiveSupport::TestCase
     assert laadan.phonemes.empty?
     assert laadan.valid?
   end
+
+  test "a language can have many words" do
+    esperanto = languages(:esperanto)
+    akvo = words(:water)
+    stelo = words(:star)
+    assert_equal 2, esperanto.words.size
+    assert_includes esperanto.word_ids, akvo.id
+    assert_includes esperanto.word_ids, stelo.id
+    assert_respond_to esperanto, :words
+  end
 end

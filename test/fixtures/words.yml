@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+house:
+  form: jamara
+  translation: house
+  language: kelen
+dream:
+  form: samora
+  translation: person
+  language: kelen
+water:
+  form: akvo
+  translation: water
+  language: esperanto
+star:
+  form: stelo
+  translation: star
+  language: esperanto
+woman:
+  form: wɪθhɪʒ
+  translation: woman
+  language: laadan

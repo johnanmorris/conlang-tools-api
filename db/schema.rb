@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104175345) do
+ActiveRecord::Schema.define(version: 20170114213208) do
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -52,5 +52,15 @@ ActiveRecord::Schema.define(version: 20170104175345) do
   end
 
   add_index "syllables", ["language_id"], name: "index_syllables_on_language_id"
+
+  create_table "words", force: :cascade do |t|
+    t.string   "form"
+    t.string   "translation"
+    t.integer  "language_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "words", ["language_id"], name: "index_words_on_language_id"
 
 end
