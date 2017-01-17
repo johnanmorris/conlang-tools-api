@@ -1,19 +1,10 @@
 class WordsController < ApplicationController
   before_action :find_language, except: [:destroy]
-  before_action :find_word, only: [:show, :update, :destroy]
+  before_action :find_word, only: [:update, :destroy]
 
   def index
     words = Word.where(language_id: @language.id)
     render json: words
-  end
-
-
-  def show
-    if @word.present?
-      render json: @word
-    else
-      render status: :not_found, nothing: true
-    end
   end
 
   def create
