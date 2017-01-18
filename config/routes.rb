@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :words, except: [:show, :new, :edit]
   end
 
-  resources :phonemes, only: [:index]
+  resources :phonemes, only: [:index, :show]
 
   # WHEN I ADD USERS, NEST THE ABOVE IN THE FOLLOWING RESOURCE?
   # resource :user do
