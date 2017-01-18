@@ -1,21 +1,8 @@
 Rails.application.routes.draw do
   resources :languages, except: [:new, :edit] do
     resources :syllables, except: [:show, :new, :edit]
-    resources :words, except: [:show, :new, :edit]
   end
 
   resources :phonemes, only: [:index, :show]
-
-  # WHEN I ADD USERS, NEST THE ABOVE IN THE FOLLOWING RESOURCE?
-  # resource :user do
-  #
-  # end
+  resources :words, except: [:new, :edit]
 end
-
-#index
-#create
-#new
-#edit
-#show
-#update
-#destroy
