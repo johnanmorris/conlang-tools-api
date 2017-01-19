@@ -24,7 +24,7 @@ csv.each do |row, cell|
   phone.place = row['place']
   phone.manner = row['manner']
   phone.save
-  puts "#{phone.ipa} saved"
+  # puts "#{phone.ipa} saved"
 end
 
 lang = Language.new(name: "Nikana")
