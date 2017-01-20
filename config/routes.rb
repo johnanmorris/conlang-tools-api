@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   resources :phonemes, only: [:index, :show]
   resources :words, except: [:new, :edit]
+
+  get '/health', to: 'home#health'
 end
