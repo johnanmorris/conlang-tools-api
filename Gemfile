@@ -1,15 +1,11 @@
 source 'https://rubygems.org'
-
-
+ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'
-
 # Rails API gem
 gem 'rails-api'
 # ActiveModel Serializer
 gem 'active_model_serializers', '~>0.8.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -44,6 +40,10 @@ group :development, :test do
   gem 'byebug'
 end
 
+group :production do
+  gem 'pg'
+end
+
 group :test do
   gem 'minitest-reporters'
   gem 'simplecov'
@@ -52,7 +52,9 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pry-rails'
+  gem 'rails-pry'
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
