@@ -90,6 +90,7 @@ GEM
     nokogiri (1.7.0)
       mini_portile2 (~> 2.1.0)
     pg (0.19.0)
+    puma (3.6.2)
     rack (1.6.5)
     rack-cors (0.4.0)
     rack-test (0.6.3)
@@ -179,6 +180,7 @@ DEPENDENCIES
   jquery-rails
   minitest-reporters
   pg
+  puma
   rack-cors
   rails (= 4.2.7)
   rails-api
