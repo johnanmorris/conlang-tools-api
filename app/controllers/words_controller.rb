@@ -3,7 +3,7 @@ class WordsController < ApplicationController
   before_action :find_word, only: [:show, :update, :destroy]
 
   def index
-    words = Word.where(language_id: @language.id)
+    words = Word.all
     render json: words
   end
 
