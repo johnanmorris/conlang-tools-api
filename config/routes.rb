@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :languages, except: [:new, :edit] do
-    resources :syllables, except: [:show, :new, :edit]
-  end
-
+  # Application routes
+  resources :languages, except: [:new, :edit]
+  resources :syllables, except: [:show, :new, :edit]
   resources :phonemes, only: [:index, :show]
   resources :words, except: [:new, :edit]
 
+  # Elastic Beanstalk Health Check
   get '/health', to: 'home#health'
 end

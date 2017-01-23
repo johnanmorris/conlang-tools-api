@@ -18,6 +18,7 @@
 
 .DS_Store
 coverage
+.env
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
