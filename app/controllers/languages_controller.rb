@@ -10,7 +10,7 @@ class LanguagesController < ApplicationController
     if @language.present?
       render json: @language
     else
-      render status: :not_found, nothing: true
+      render json: {error: "404"}, status: :not_found
     end
   end
 
