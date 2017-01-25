@@ -5,7 +5,7 @@
 
 Rails.application.config.middleware.insert_before 0, "Rack::Cors" do
   allow do
-    origins 'http://conlang-engine.com'
+    origins 'http://conlang-engine.com', 'http://localhost:4200'
 
    resource '*',
      headers: :any,
