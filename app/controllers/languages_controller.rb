@@ -2,7 +2,6 @@ class LanguagesController < ApplicationController
   before_action :find_language, except: [:index, :create]
 
   def index
-    # This will have to be modified once a User model exists
     languages = Language.all
     render json: languages
   end

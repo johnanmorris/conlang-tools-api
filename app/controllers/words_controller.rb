@@ -1,5 +1,4 @@
 class WordsController < ApplicationController
-  before_action :find_language, only: [:create, :update]
   before_action :find_word, only: [:show, :update, :destroy]
 
   def index
@@ -47,11 +46,7 @@ class WordsController < ApplicationController
     params.require(:word).permit(:id, :form, :translation, :language_id)
   end
 
-  def find_language
-    @language = Language.find_by(id: params[:language_id])
-  end
-
   def find_word
-    @word = Word.find(params[:id])
+    @word = Word.find_by(id: params[:id])
   end
 end

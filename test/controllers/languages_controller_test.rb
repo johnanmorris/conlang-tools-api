@@ -10,7 +10,7 @@ class LanguagesControllerTest < ActionController::TestCase
     @request.headers['Content-Type'] = Mime::JSON.to_s
   end
 
-  LANGUAGE_KEYS = %w( description id name phoneme_ids phonemes )
+  LANGUAGE_KEYS = %w( description id name phoneme_ids phonemes word_ids)
 
   test "can get languages#index" do
     get :index
@@ -74,7 +74,7 @@ class LanguagesControllerTest < ActionController::TestCase
     assert_instance_of Hash, body
     assert_instance_of Hash, object
 
-    assert_equal 5, object.keys.length
+    assert_equal 6, object.keys.length
     assert_equal "id", object.keys.first
 
     lang_from_database = Language.find(object["id"])

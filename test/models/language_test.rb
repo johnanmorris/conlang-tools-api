@@ -32,17 +32,6 @@ class LanguageTest < ActiveSupport::TestCase
     assert_not_nil language.description
   end
 
-  test "Language belongs to a User" do
-    skip("haven't implemented User model yet")
-    language = Language.create!(name: "Sarano", description: "something")
-    user = User.create!(username: "testing", email: "test@test.com", uid: 124, provider: "google")
-    language.user = user
-    assert language.save
-    assert_equal language.user_id, user.id
-    assert_includes user.languages, language
-    assert_respond_to language, :user
-  end
-
   test "Language can have many phonemes" do
     kelen = languages(:kelen)
     esperanto = languages(:esperanto)
