@@ -1,5 +1,5 @@
 # Conlang Engine Back-End
-This is the front end for my Ada Developers
+This is the back end for my Ada Developers
 Academy capstone project. It used to be deployed
 via Amazon EC2, Elastic Beanstalk, and RDS, but has
 been taken down. I'm not sure when, where, or if I
